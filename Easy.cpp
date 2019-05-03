@@ -316,3 +316,195 @@ bool isSpecialArray(std::vector<int> arr) {
 	}
 	return true;
 }
+
+/*
+** Problem 23: Hurdle Jump
+*/
+bool hurdleJump(std::vector<int> hurdles, int jumpHeight) {
+	for (int i = 0; i < hurdles.size(); i++) {
+		if (jumpHeight < hurdles[i])
+			return false;
+	}
+	return true;
+}
+
+/*
+** Problem 24: Reverse Coding Challenge 3
+*/
+/* This function stores the result of the modulo between the value at each index
+and the num in a new array and returns that new array */
+std::vector<int> mysteryFunc(std::vector<int> arr, int num) {
+	std::vector<int> newArr;
+	for (int i = 0; i < arr.size(); i++) 
+		newArr[i] = arr[i] % num;
+	return newArr;
+}
+
+/*
+** Problem 25: Check if a Number is a Palindrome
+*/
+bool isPalindrome(int n) {
+	int counter{ 0 }, temp{ n };
+	do {
+		temp /= 10;
+		counter++;
+	} while (temp > 0);
+	int list[counter];
+	for (int i = 0; i < counter; i++) {
+		list[i] = n % 10;
+		n /= 10;
+	}
+	for (int j = 0; j < (sizeof(list) / sizeof(list[0])); j++) {
+		if (list[j] != list[(sizeof(list) / sizeof(list[0]) - 1 - j)])
+			return false;
+	}
+	return true;
+}
+
+/* 
+** Problem 26: String to Integer and Vice Versa
+*/
+int toInt(std::string string) {
+	return toInt(string);
+}
+
+std::string toStr(int integer) {
+	return toStr(integer);
+}
+
+/*
+** Problem 27: Filter Repeating Character Strings
+*/
+std::vector<std::string> identicalFilter(std::vector<std::string> arr) {
+	std::vector<std::string> myList;
+	int x = 0, targetLocation = x;
+	std::string target = arr[x];
+	for ( ; x < arr.size(); x++) {
+		if (arr[x] == target && targetLocation != x)
+				return myList;
+	}
+	for (int i = 0; i < arr.size(); i++) {
+		for (int j = 0; j < arr[i].size(); j++) {
+			if (arr[j] != arr[j + 1])
+				continue;
+			myList[i] = arr[i];
+		}
+	}
+	return myList;
+}
+
+/*
+** Problem 28: Count Ones in a 2D Array
+*/
+int count_ones(std::vector< std::vector<int> > matrix) {
+	int numOne{ 0 };
+	for (int i = 0; i < matrix.size(); i++) {
+		for (int j = 0; j < matrix[i].size(); j++) {
+			if (matrix[i][j] == 1)
+				numOne++;
+		}
+	}
+	return numOne;
+}
+	
+/*
+** Problem 29: Replacing Letters with Hashes
+*/
+std::string replace(std::string str, std::string r) {
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] >= r[0] && str[i] <= r[2])
+			str[i] = '#';
+	}
+	return str;
+}
+
+/*
+** Problem 30: Semantic Versioning
+*/
+using namespace std;
+
+string retrieveMajor(string semver) {
+	return string(semver.substr(0, int(semver.find('.')) - 0));
+}
+
+string retrieveMinor(string semver) {
+	return string(semver.substr(int(semver.find_first_of('.') + 1), int(semver.find_last_of('.')) - 1 - int(semver.find_first_of('.'))));
+}
+
+string retrievePatch(string semver) {
+	return string(semver.substr(int(semver.find_last_of('.')) + 1, semver.length() - 1 - int(semver.find_last_of('.'))));
+}
+
+/*
+** Problem 31: Check if a Number is Prime
+*/
+bool isPrime(int num) {
+	int divisor{ 2 };
+	if (num <= 1)
+		return false;
+	while (divisor < num) {
+		if (num % divisor == 0)
+			return false;
+		divisor++;
+	}
+	return true;
+}
+
+/*
+** Problem 32: Digit Distance 
+*/
+int digitDistance(int num1, int num2) {
+	int sum{ 0 };
+	while (num1 > 0 && num2 > 0) {
+		sum += abs(num1 % 10 - num2 % 10);
+		num1 /= 10;
+		num2 /= 10;
+	}
+	return sum;
+}
+
+/*
+** Problem 33: Omnipresent Value
+*/
+bool isOmnipresent(std::vector<std::vector<int>> arr, int val) {
+	int tracker{ 0 };
+	for (int i = 0; i < arr.size(); i++) {
+		for (int j = 0; j < arr[i].size(); j++) {
+			if (arr[i][j] == val) {
+				tracker++;
+			}
+		}
+		if (tracker < 1)
+			return false;
+		tracker = 0;
+	}
+	return true;
+}
+
+/*
+** Problem 34: Move Capital Letters to the Front
+*/
+std::string capToFront(std::string str) {
+	std::string upStr, lowStr;
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] >= 90) 
+			lowStr += str[i];
+		else 
+			upStr += str[i];
+	}
+	return upStr + lowStr;
+}
+
+/*
+** Problem 35: Counting Adverbs
+*/
+int countAdverbs(std::string s) {
+	int num{ 0 };
+	for (int i = 0; i < s.length(); i++) {
+		if (s[i] == ' ' || s[i] == '.' || s[i] == ',') {
+			if (s[i - 1] == 'y' && s[i - 2] == 'l')
+				num++;
+		}
+	}
+	return num;
+}
