@@ -289,3 +289,30 @@ std::vector<int> removeSmallest(std::vector<int> arr) {
 	return newArr;
 }
 
+/*
+** Problem 21: Filter by Digit Length
+*/
+#include <cmath>
+std::vector<int> filterDigitLength(std::vector<int> arr, int n) {
+	std::vector<int> list;
+	for (int i = 0; i < arr.size(); i++) {
+		if (arr[i] > pow(10, n) && arr[i] < pow(10, n + 1))
+			list[i] = arr[i];
+	}
+	return list;
+}
+
+/*
+** Problem 22: Special Arrays
+*/
+bool isSpecialArray(std::vector<int> arr) {
+	for (int i = 0; i < arr.size(); i += 2) {
+		if (arr[i] % 2 == 1)
+			return false;
+	}
+	for (int j = 1; j < arr.size(); j += 2) {
+		if (arr[j] % 2 == 0)
+			return false;
+	}
+	return true;
+}
