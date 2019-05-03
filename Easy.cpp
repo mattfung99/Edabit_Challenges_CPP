@@ -508,3 +508,119 @@ int countAdverbs(std::string s) {
 	}
 	return num;
 }
+
+/*
+** Problem 36: Increment to Top
+*/
+int incrementToTop(std::vector<int> arr) {
+	sort(arr.begin(), arr.end());
+	int distance{ 0 };
+	for (int i = 0; i < arr.size(); i++) {
+		distance += arr[arr.size() - 1] - arr[i];
+	}
+	return distance;
+}
+
+/*
+** Problem 37: Typing Game
+*/
+using namespace std;
+vector<int> correctStream(vector<string> user, vector<string> correct) {
+	vector<int> newArr;
+	for (int i = 0; i < user.size(); i++) {
+		for (int j = 0; j < user[i].size(); j++) {
+			if (user[j] != correct[j]) {
+				newArr[i] = -1;
+				continue;
+			}
+		}
+		newArr[i] = 1;
+	}
+	return newArr;
+}
+
+/*
+** Problem 38: Valid Zip Code
+*/
+bool isValid(std::string zip) {
+	for (int x = 0; x < zip.length(); x++) {
+		if (zip[x] < 48 || zip[x] > 57 || zip.length() > 5)
+			return false;
+	}
+	return true;
+}
+
+/*
+** Problem 39: Moving to the End
+*/
+using namespace std;
+
+vector<int> moveToEnd(vector<int> arr, int el) {
+	int temp, index;
+	for (int i = 0; i < arr.size() - 1; i++) {
+		if (arr[i] == el) {
+			temp = arr[i];
+			index = i;
+			for (int j = index; j < arr.size() - 1; j++) {
+				arr[j] = arr[j + 1];
+			}
+			arr[arr.size() - 1] = temp;
+			if (arr[0] == el) {
+				temp = arr[0];
+				for (int j = 0; j < arr.size() - 1; j++) {
+					arr[j] = arr[j + 1];
+				}
+				arr[arr.size() - 1] = temp;
+			}
+		}
+	}
+	return arr;
+}
+
+/*
+** Problem 40: Shift and Multliple Validators
+*/
+bool isShifted(std::vector<double> a1, std::vector<double> a2) {
+	double shift = a2[0] - a1[0];
+	for (int i = 0; i < a1.size(); i++) {
+		if (a2[i] - a1[i] != shift)
+			return false;
+	}
+	return true;
+}
+
+bool isMultiplied(std::vector<double> a1, std::vector<double> a2) {
+	double multi = a2[0] / a1[0];
+	for (int i = 0; i < a1.size(); i++) {
+		if (a2[i] / a1[i] != multi)
+			return false;
+	}
+	return true;
+}
+
+/*
+** Problem 41: Get the File Extension
+*/
+std::vector<std::string> getExtension(std::vector<std::string> arr) {
+	std::vector<std::string> strArr;
+	for (int i = 0; i < arr.size(); i++) {
+		strArr[i] = arr[i].substr(int(arr[i].find('.') + 1), arr.size() - 1 - int(arr[i].find('.')));
+	}
+	return strArr;
+}
+
+/*
+** Problem 42: Find the Total Number of Digits the Given Number Has
+*/
+int findDigitAmount(int num) {
+	int digits{ 0 }, temp{ num };
+	while (temp > 0) {
+		temp /= 10;
+		digits++;
+	}
+	return (num == 0) ? 1 : digits;
+}
+
+/*
+** Problem 43: Find the Minimum, Maximum, Length and Average Values
+*/
