@@ -624,3 +624,67 @@ int findDigitAmount(int num) {
 /*
 ** Problem 43: Find the Minimum, Maximum, Length and Average Values
 */
+std::vector<float> minMaxLengthAverage(std::vector<float> arr) {
+	std::vector<float> results;
+	results[2] = arr.size();
+	for (int i = 0; i < arr.size(); i++) {
+		results[3] += arr[i];
+		if (arr[i] > results[1])
+			results[1] = arr[i];
+		if (arr[i] < results[0]) 
+			results[0] = arr[i];
+	}
+	return results;
+}
+
+/* 
+** Make a Circle with OOP
+*/
+#include <math.h>
+
+class Rectangle {
+	public:
+    Rectangle(float theSideA, float theSideB){
+      sideA = theSideA;
+      sideB = theSideB;
+    }
+    float getArea() { return sideA * sideB; };
+    float getPerimeter() { return (sideA + sideB) * 2; };
+  private:
+    float sideA;
+    float sideB;
+};
+
+const float PI_F = 3.14f;
+
+class Circle {
+  // Write your code here
+  // Please use PI_F constant
+	float radius;	// default accessiblity of member variables are private in classes
+	
+	public:
+		Circle (float theRadius) {
+			radius = theRadius;
+		}
+		float getArea() { return PI_F * pow(radius, 2); };
+    float getPerimeter() { return PI_F * 2 * radius; };
+};
+
+/*
+** Phone Number Formatting
+*/
+std::string formatPhoneNumber(std::vector<int> numbers) {
+	std::string phoneNumber{ "(" };
+	for (int i = 0; i < numbers.size(); i++) {
+		switch(i) {
+			case 3:
+				phoneNumber += ") ";
+				break;
+			case 6:
+				phoneNumber += "-";
+				break;
+		}
+		phoneNumber += std::to_string(numbers[i]);
+	}
+	return phoneNumber;
+}
