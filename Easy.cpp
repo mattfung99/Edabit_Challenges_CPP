@@ -638,7 +638,7 @@ std::vector<float> minMaxLengthAverage(std::vector<float> arr) {
 }
 
 /* 
-** Make a Circle with OOP
+** Problem 44: Make a Circle with OOP
 */
 #include <math.h>
 
@@ -671,7 +671,7 @@ class Circle {
 };
 
 /*
-** Phone Number Formatting
+** Problem 45: Phone Number Formatting
 */
 std::string formatPhoneNumber(std::vector<int> numbers) {
 	std::string phoneNumber{ "(" };
@@ -687,4 +687,65 @@ std::string formatPhoneNumber(std::vector<int> numbers) {
 		phoneNumber += std::to_string(numbers[i]);
 	}
 	return phoneNumber;
+}
+
+/*
+** Problem 46: Purge and Organize
+*/
+std::vector<int> uniqueSort(std::vector<int> arr) {
+	std::sort( arr.begin(), arr.end() );
+	arr.erase( unique( arr.begin(), arr.end() ), arr.end() );
+	return arr;
+}
+
+/*
+** Problem 47: Sort by String Length
+*/
+std::vector<std::string> sortByLength(std::vector<std::string> arr) {
+	std::string temp;
+	for (int iteration = 0; iteration < (arr.size() - 1); iteration++) {
+		for (int cycle = 0; cycle < arr.size() - iteration - 1; cycle++) {
+			if (arr[cycle].size() > arr[cycle + 1].size()) {
+					temp = arr[cycle];
+					arr[cycle] = arr[cycle + 1];
+					arr[cycle + 1] = temp;
+			}
+		}
+	}
+	return arr;
+}
+
+/*
+** Problem 48: Is the Number a Prime?
+*/
+bool isPrime(int num) {
+	int divisor{ 2 };
+	if (num <= 1)
+		return false;
+	while (divisor < num) {
+		if (num % divisor == 0)
+			return false;
+		divisor++;
+	}
+	return true;
+}
+
+/*
+** Problem 49: Simple Circle Collision Detection
+*/
+#include <math.h>
+bool isCircleCollision(std::vector<int> c1,std::vector<int> c2) {
+	return (pow(c1[1] - c2[1], 2) + pow(c1[2] - c2[2], 2) <= pow(c1[0] + c2[0], 2)) ? true : false;  
+}
+
+/*
+** Problem 50: Pi to N Decimal Places
+*/
+#include <cmath>
+double myPi(int n) {
+	return round(M_PI*pow(10, n))/pow(10, n);
+}
+// OR
+double myPi(int n) {
+	return((round(3.141592653589793 * std::pow(10,n)))/(std::pow(10,n)));	
 }
