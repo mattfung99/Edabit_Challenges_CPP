@@ -885,3 +885,66 @@ std::string longestZero(std::string str) {
 	}
 	return zeros;
 }
+
+/*
+** Problem 61: Chocolate Dilemma
+*/
+bool testFairness(std::vector<std::vector<int>> agatha, std::vector<std::vector<int>> bertha) {
+	int aSum{ 0 }, bSum{ 0 };
+	for (int i = 0; i < agatha.size(); i ++) 
+		aSum += agatha[i][0] * agatha[i][1]; 
+	for (int x = 0; x < bertha.size(); x++) 
+		bSum += bertha[x][0] * bertha[x][1];
+	return aSum == bSum ? true : false;
+}
+
+/*
+** Problem 62: Return the Sum of the Two Smallest Numbers
+*/
+double sumTwoSmallestNums(std::vector<double> arr) {
+	std::sort(arr.begin(), arr.end());
+	for (int i = 0; i < arr.size(); i++) {
+		if (arr[i] >= 0) {
+			return arr[i] + arr[i + 1];
+			break;
+		}
+	}
+}
+
+/*
+** Problem 63: Capitalize the First Letter of Each Word
+*/
+std::string makeTitle(std::string s) {
+	s.at(0) -= 32;
+	for (int i = 0; i < s.length(); i++) {
+		if (s.at(i) = ' ') 
+			s.at(i + 1) -= 32;
+	}
+	return s;
+}
+
+/*
+** Problem 64: The Conquering Queen
+*/
+bool canCapture(std::vector<std::string> queens) {
+	if (queens[0].at(0) == queens[1].at(0) || queens[0].at(1) == queens[1].at(1))
+		return true;
+	else 
+		return abs(queens[1].at(0) - queens[0].at(0)) == abs(queens[1].at(1) - queens[0].at(1));
+}
+
+/*
+** Problem 65: Christmas Tree
+*/
+std::vector<std::string> tree(int h) {
+	std::vector<std::string> myTree;
+	for (int i = 1; i <= h; i++) {
+		for (int j = 1; j <= (h - i) * 2; j++) 
+			myTree[i - 1] += " ";
+		for (int k = i; k >= 1; k--)
+			myTree[i - 1] += "#";
+		for (int l = 2; l <= i; l++)
+			myTree[i - 1] += "#";
+	}
+	return myTree;
+}
