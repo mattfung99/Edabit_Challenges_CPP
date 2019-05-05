@@ -743,9 +743,145 @@ bool isCircleCollision(std::vector<int> c1,std::vector<int> c2) {
 */
 #include <cmath>
 double myPi(int n) {
-	return round(M_PI*pow(10, n))/pow(10, n);
+	return round(M_PI * pow(10, n)) / pow(10, n);
 }
 // OR
 double myPi(int n) {
-	return((round(3.141592653589793 * std::pow(10,n)))/(std::pow(10,n)));	
+	return((round(3.141592653589793 * std::pow(10, n))) / (std::pow(10, n)));	
+}
+
+/*
+** Problem 51: Amplify the Multiples of 4
+*/
+std::vector<int> amplify(int n) {
+	std::vector<int> amps;
+	for (int x = 1; x <= n; x++) {
+		(x % 4 == 0) ? amps[x - 1] = x * 10 : amps[x - 1] = x;
+	}
+	return amps;
+}
+
+/*
+** Problem 52: Retrieve the Subreddit
+*/
+std::string subReddit(std::string link) {
+	link.pop_back();
+	return link.substr(link.find_last_of('/') + 1);
+}
+
+/*
+** Problem 53: Difference of Max and min Numbers in Array
+*/
+int differenceMaxMin(std::vector<int> arr) {
+	int max = *std::max_element(arr.begin(), arr.end()), min = *std::min_element(arr.begin(), arr.end());
+	return abs(max - min)
+}
+// OR
+int differenceMaxMin(std::vector<int> arr) {
+	return abs(*std::max_element(arr.begin(), arr.end()) - *std::min_element(arr.begin(), arr.end()));
+}
+
+/*
+** Problem 54: N-Sized Parts
+*/
+using namespace std; 
+
+vector<string> partition(string str, int n) {
+	vector<string> newList;
+	newList[0] = str.substr(str.at(0), n);
+	newList[1] = str.substr(n + 1);
+	return newList;
+}
+
+/*
+** Problem 55: Format Number with Comma(s) Seperating Thousands
+*/
+std::string formatNum(int num) {
+	std::string n;
+	while (num > 0) {
+		if (num % 1000 == 0) {
+			n = std::to_string(num);
+			n.insert(num / 1000, ",");
+		}
+		num /= 1000;
+	}
+	return n;
+}
+// OR
+std::string formatNum(int num) {
+	std::string numString = std::to_string(num);
+	for (int i = numString.size() - 3; i > 0; i -= 3) {
+		numString.insert(i, ",");
+	}
+	return numString;
+}
+
+/*
+** Problem 56: Odd Up, Even Down
+*/
+std::vector<int> transform(std::vector<int> arr) {
+	for (int i = 0; i < arr.size(); i++)
+		arr[i] % 2 == 0 ? arr[i] -= 1 : arr[i] += 1;
+	return arr;
+}
+
+/*
+** Problem 57: Shuffle the Name
+*/
+std::string nameShuffle(std::string str) {
+	return str.substr(int(str.find(' ') + 1)) + " " + str.substr(0, int(str.find(' ')));
+}
+
+/* 
+** Problem 58: Factor Chain
+*/
+bool factorChain(std::vector<int> arr) {
+	for (int i = 0; i < arr.size() - 1; i++) {
+		if (arr[i + 1] % arr[i] != 0)
+			return false;
+	}
+	return true;
+}
+
+/*
+** Problem 59: Numeric Seesaw
+*/
+std::string seesaw(int num) {
+	std::string myStr = std::to_string(num);
+	if (myStr.length() % 2 == 0) {
+		if (stoi(myStr.substr(0, (myStr.length() / 2))) > (stoi(myStr.substr(myStr.length() / 2)))) 
+			return "left";
+		else if (stoi(myStr.substr(0, (myStr.length() / 2))) < (stoi(myStr.substr(myStr.length() / 2))))
+			return "right";
+		else
+			return "balanced";
+	}
+	else {
+		if (stoi(myStr.substr(0, (myStr.length() / 2))) > (stoi(myStr.substr((myStr.length() / 2) + 1)))) 
+			return "left";
+		else if (stoi(myStr.substr(0, (myStr.length() / 2))) < (stoi(myStr.substr((myStr.length() / 2) + 1))))
+			return "right";
+		else
+			return "balanced";
+	}
+}
+
+/*
+** Problem 60: Longest Sequence of Consecutive Zeros
+*/
+std::string longestZero(std::string str) {
+	int longestLength{ 0 }, length{ 0 };
+	std::string zeros;
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] == '0') {
+			length++;
+			if (length > longestLength) {
+				longestLength = length;
+				zeros += str[i];
+			}
+		}
+		else 
+			length = 0;
+	}
+	return zeros;
 }
