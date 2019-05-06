@@ -948,3 +948,31 @@ std::vector<std::string> tree(int h) {
 	}
 	return myTree;
 }
+
+/*
+** Problem 66: Capture the Rook
+*/
+bool canCapture(std::vector<std::string> pieces) {
+	return pieces[0].at(0) == pieces[1].at(0) || pieces[0].at(1) == pieces[1].at(1);
+}
+
+/*
+** Problem 67: Left, Right Shift
+*/
+std::vector<int> leftShift(std::vector<int> arr, int num) {
+	for (int i = 0; i < arr.size(); i++) {
+		arr[i] += (num % arr.size());
+		if (arr[i] > arr.size())  
+			arr[i] -= arr.size();  
+	}
+	return arr;
+}
+
+std::vector<int> rightShift(std::vector<int> arr, int num) {
+	for (int i = 0; i < arr.size(); i++) {
+		arr[i] -= (num % arr.size());
+		if (arr[i] <= 0)
+			arr[i] += arr.size();
+	}
+	return arr;
+}
