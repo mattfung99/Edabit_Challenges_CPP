@@ -976,3 +976,92 @@ std::vector<int> rightShift(std::vector<int> arr, int num) {
 	}
 	return arr;
 }
+
+/*
+** Problem 68: Hitting the Jackpot
+*/
+bool testJackpot(std::vector<std::string> result) {
+	for (int i = 0; i < result.size() - 1; i++) {
+		if (result[i] != result[i + 1])
+			return false;
+	}
+	return true;
+}
+
+/*
+** Problem 69: Find Unique Character Strings
+*/
+std::vector<std::string> 
+filterUnique(std::vector<std::string> arr) {
+std::vector<std::string> myList;
+	for (int i = 0; i < arr.size(); i++) {
+		for (int j = 0; arr[i].size() - 1; j++) {
+			if (arr[i].at(0) == arr[i].at(j + 1))
+				continue;
+			myList[i] = arr[i];
+		}
+	}
+	return myList;
+}
+	
+/*
+** Problem 70: Transform into an Array with No Duplicates
+*/
+std::vector<int> set(std::vector<int> arr) {
+	std::sort( arr.begin(), arr.end() );
+	arr.erase( unique( arr.begin(), arr.end() ), arr.end() );
+	return arr;
+}
+
+/*
+** Problem 71: First and Last Index
+*/
+using namespace std;
+vector<int> charIndex(string word, char c) {
+	vector<int> arr;
+	arr[0] = word.find_first_of(c);
+	arr[1] = word.find_last_of(c);
+	return arr;
+}
+
+/*
+** Problem 72: Calculate the Median
+*/
+float median(std::vector<int> arr) {
+	std::sort(arr.begin(), arr.end());
+	return arr.size() % 2 ? (static_cast<float>(arr[arr.size() / 2.0])) : static_cast<float>(((arr[arr.size() / 2.0] + arr[-1 + (arr.size() / 2.0)]) / 2.0));
+}
+
+/*
+** Problem 73: Is the Word an Isogram?
+*/
+#include <cctype>
+bool isIsogram(std::string s) {
+	std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+	char c; 
+	for (int i = 0; i < s.size(); i++) {
+		c = s.at(i);
+		for (int j = i + 1; j < s.size(); j++) {
+			if (c == s.at(j))
+				return false;
+		}
+	}
+	return true;
+}
+
+/*
+** Problem 74: Split Item Codes
+*/
+std::vector<std::string> splitCode(std::string item) {
+	int index;
+	std::vector<std::string> arr;
+	for (int i = 0; i < item.size(); i++) {
+		if (item.at(i) >= 48 && item.at(i) <= 57) {
+			index = i;
+			break;
+		}
+	}
+	arr[0] = item.substr(0, item.size() - 1 - index);
+	arr[1] = item.substr(index + 1);
+}
+
