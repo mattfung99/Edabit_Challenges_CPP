@@ -1065,3 +1065,72 @@ std::vector<std::string> splitCode(std::string item) {
 	arr[1] = item.substr(index + 1);
 }
 
+/*
+** Problem 75: Check if the String is a Palindrome
+*/
+bool isPalindrome(std::string str) {
+	std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+	str.erase(std::remove(str.begin(), str.end(), ','), str.end());
+	str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
+	str.erase(std::remove(str.begin(), str.end(), '!'), str.end());
+	str.erase(std::remove(str.begin(), str.end(), '-'), str.end());
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] != str[str.length() - 1 - i])
+			return false;
+	}
+	return true;
+}
+
+/*
+** Problem 76: Are Letters in the Second String Present in the First?
+*/
+#include <cctype>
+
+bool letterCheck(std::vector<std::string> arr) {
+	std::transform(arr[0].begin(), arr[0].end(), arr[0].begin(), ::tolower);
+	std::transform(arr[1].begin(), arr[1].end(), arr[1].begin(), ::tolower);
+	char c;
+	int tracker{ 0 };
+	for (int i = 0; i < arr[1].size(); i++) {
+		c = arr[1][i];
+		for (int j = 0; j < arr[0].size(); j++) {
+			if (c == arr[0][j])
+				tracker++;
+		}
+		if (tracker < 1)
+			return false;
+		tracker = 0;
+	}
+	return true;
+}
+
+/*
+** Problem 77: Amazing Alliteration
+*/
+bool alliterationCorrect(std::string s) {
+	
+	bool lastWord = false;
+	std::string::size_type spacePos;
+	std::string mystr;
+	char c = tolower(s[0]);
+	
+	do{
+		spacePos = s.find(" ");
+		lastWord = (spacePos == std::string::npos);
+		
+		if(lastWord){
+			mystr = s.substr(0, s.size() - 1);
+			s = "";
+		} else {
+			mystr = s.substr(0, spacePos);
+			s = s.substr(spacePos + 1, s.size() - spacePos);
+		}
+		
+		if(mystr.size() > 3 && tolower(mystr[0]) != c)
+			return false;
+		
+	}while(s != "");
+	
+	return true;
+}
+
